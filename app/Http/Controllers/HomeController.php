@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function GuzzleHttp\Promise\all;
 
 class HomeController extends Controller
 {
     public function hakkimda()
     {
-        $users = DB::table('users')-> get();
+        //$users = DB::table('users')-> get();
+        $users= User::all();
 
         return view('hakkimda',compact('users'));
     }

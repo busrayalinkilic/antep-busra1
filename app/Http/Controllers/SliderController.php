@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\CategoryImport;
+use App\Models\Slider;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
-class CategoryController extends Controller
+class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $sliders = Slider::all();
+        return view('sliders.index', compact('sliders'));
     }
 
     /**
@@ -42,10 +38,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Slider $slider)
     {
         //
     }
@@ -53,10 +49,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -65,10 +61,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Slider $slider)
     {
         //
     }
@@ -76,26 +72,13 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Slider $slider, $id)
     {
-        //
-    }
-
-
-    public function upload()
-    {
-        return view('category.import');
-    }
-
-    public function import()
-    {
-        Excel::import(new CategoryImport, \request()->file('file'));
+        Slider::findOrFail($id)->delete();
         return back();
 
     }
-
-
 }

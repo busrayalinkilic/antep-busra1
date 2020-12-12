@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Products extends Migration
+class CreateSlidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class Products extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('sliders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pName');
-            $table->decimal('price',5, 2);
-            $table->string('photo', 100) ->nullable();
-            $table->text('description')->nullable();;
-            $table->timestamps();
-
-
+            $table->string('name');
+            $table->string('photo');
+            $table->timestamps(); //oluşturulma ve güncelleme zamanını tutar
+            $table->softDeletes(); //silinme zamanını tutar
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +29,6 @@ class Products extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('sliders');
     }
 }

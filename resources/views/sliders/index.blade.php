@@ -21,19 +21,19 @@
 </head>
 <body>
 
-<h2>HTML Table</h2>
+<h2>Sliders</h2>
 
 <table>
     <tr>
         <th>Adi</th>
-        <th>Price</th>
-
+        <th>Resim</th>
+        <th>Islemler</th>
     </tr>
-    @foreach($products as $urunler)
+    @foreach($sliders as $slider)
         <tr>
-            <td>{{$urunler->pName }}</td>
-            <td>{{$urunler->price}}</td>
-
+            <td>{{$slider-> name }}</td>
+            <td>{{$slider->photo}}</td>
+            <td> <a href="{{route('delete.slider' ,$slider->id)}}"-> Delete</a> </td>
         </tr>
         @endforeach
         </tr>

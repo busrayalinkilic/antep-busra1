@@ -2,16 +2,18 @@
 
 namespace App\Imports;
 
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use App\Models\Category;
+use Maatwebsite\Excel\Concerns\ToModel;
 
-class CategoryImport implements ToCollection
+class CategoryImport implements ToModel
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+
+
+    public function model(array $row)
     {
-        //
+        return new Category([
+            'name'=>$row[0]
+        ]);
+        // TODO: Implement model() method.
     }
 }
