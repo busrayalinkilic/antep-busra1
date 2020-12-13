@@ -2,43 +2,18 @@
 <html>
 <head>
     <style>
-        table {
+        body {
             font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
         }
     </style>
 </head>
 <body>
 
-<h2>Hakkimda</h2>
+<h2>Hakkımda</h2>
 
-<table>
-    <tr>
-        <th>Adi</th>
-        <th>Email</th>
-        <th>Sifre</th>
-    </tr>
-    @foreach($users as $user)
-    <tr>
-        <td>{{$user-> name }}</td>
-        <td>{{$user->email}}</td>
-        <td>{{$user-> password}}</td>
-    </tr>
-        @endforeach
-    </tr>
-</table>
+Merhaba, benim adım {{$name}}<br>
+{{$job}} bölümünde okuyorum.<br>
+{{$city}}'da yaşıyorum.
 
 </body>
 </html>
-

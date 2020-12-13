@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjeController;
+use App\Exports\ProductExports;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,10 +15,15 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
-    return view('layouts.index-master');
+    return view('layouts.master');
 });
+*/
+Route::get('/', [\App\Http\Controllers\ProjeController::class, 'index']);
+//Route::view('/', 'layouts.master');
+
+
 Route::get('/hakkimda', [\App\Http\Controllers\HomeController::class, 'hakkimda']);
 Route::get('/urunler', [\App\Http\Controllers\HomeController::class, 'urunler']);
 Route::get('/satis', [\App\Http\Controllers\HomeController::class, 'satis']);
@@ -23,9 +31,9 @@ Route::get('/satis', [\App\Http\Controllers\HomeController::class, 'satis']);
 /**
  * product işlemleri
  */
-Route::get('/create-product', 'ProductController@create')->name('product.create');
-Route::post('/save-product','ProductController@store')->name('product.save');
-Route::get('/show-product','ProductController@index')->name('product.index');
+//Route::get('/create-product', 'ProductController@create')->name('product.create');
+//Route::post('/save-product','ProductController@store')->name('product.save');
+//Route::get('/show-products','ProductController@index')->name('product.index');
 Route::get('/export-products','ProductController@export')->name('product.export');
 
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductExport;
+use App\Imports\ProductImport;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,10 +19,18 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //order by => sıralama yaptırır
+        //desc= sondan başa
+        //asc baştan sona
+        //orderBy('id','desc')   orderByDesc('id')   latest('id')
        //$products = Product::all();
-        $products = Product::with(['user'])->get();
+    // $products = Product::with(['user'])->latest('id')->take(3)->get();
         //dd($products);
-        return view('product.index', compact('products'));
+        // return view('product.index', compact('products'));
+        $products = Product::with(['user'])->get();
+        //ÖDEV select
+     //  $products = Product::with(['user'])->paginate(2);
+       return view('product.index', compact('products'));
     }
 
     /**
@@ -30,7 +40,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $users=User::all();
+        $categories=Category::all();
+        return view('product.create',compact('categories','users'));
     }
 
     /**
@@ -41,14 +53,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $pName = $request->get('pName');
-        $price = $request->get('price');
-        $created_by = User::find(1);
+        $name=$request->get('pName');
+        $category_id=$request->get('category_id');
+        $price=$request->get('price');
+        $created_by=User::find(1);
 
         Product::create([
-            'pName' => $pName,
-            'price' => $price,
-            'created_by' => $created_by->id
+            'pName'=>$name,
+            'category_id'=>$category_id,
+            'price'=>$price,
+            'created_by'=>$created_by
+
         ]);
         return back();
     }
@@ -99,6 +114,17 @@ class ProductController extends Controller
 
     public function export(){
         return Excel::download(new ProductExport, 'products.xlsx');
+
+    }
+
+   /* public function import()
+    {
+        Excel::import(new ProductImport, request()->file('file'));
+        return back();
+    }*/
+    public function bannerShow() {
+        Product::with(['photo'])->get();
+        //yeni bir veritabanı tablosu oluştur
 
     }
 }

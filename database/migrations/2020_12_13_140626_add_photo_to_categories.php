@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ddColumnToProducts extends Migration
+class AddPhotoToCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class ddColumnToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->integer('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+        Schema::table('categories', function (Blueprint $table) {
+            $table->string('photo')->after('name');
         });
     }
 
@@ -26,8 +25,8 @@ class ddColumnToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
+        Schema::table('categories', function (Blueprint $table) {
+            Schema::dropIfExists('categories'); // yanlışlık olursa geri alabilmemizi sağlar
         });
     }
 }

@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/antep-busra" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/laravel-api" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/resources/views" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/resources/views/antep-busra" vcs="Git" />
   </component>

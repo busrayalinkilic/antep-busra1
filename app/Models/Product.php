@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillable = ['pName', 'price', 'photo', 'description', 'created_by'];
+    protected $fillable = ['pName', 'price', 'photo',  'description', 'status', 'created_by','category_id'];
 
     //ilişkili olduğu alanlar
     public function user()
     {
         return $this->hasMany('App\Models\User', 'id', 'created_by');
     }
-    public function get_Category()
+    public function get_category()
     {
         return $this->hasOne('App\Models\Categories','id','category_id');
     }
